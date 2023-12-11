@@ -60,6 +60,7 @@ for x in os.listdir(MainDirectory):
             }
             print(new_row_data)
             df.loc[len(df)] = new_row_data
+        #How many rows of sample we want, 
         for _ in range(1000):
             SampleCreator(df, today, CustomersList,conteo)
 
