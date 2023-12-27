@@ -6,15 +6,12 @@ import numpy
 import random
 from timeit import default_timer as timer
 
-
-
 start = timer()
 
 #Creating DataForSample
 MainDirectory = (r"C:\Users\杜甫\Desktop\BaseQueryStructure")
 os.chdir(MainDirectory)
 print("Current directory is "+ MainDirectory)
-
 
 #Databases {AcceptanceReport, AllOperationData, PerformanceReport, TimelyUpdates}
 
@@ -30,36 +27,28 @@ def create_empty_dataframe(file_path):
 
 
 #We Review by File name, case it exists pass, else will create file with the according columns 
+def file_creater(file_path):
+    if os.path.exists(os.path.join(file_path)):
+        print(file_name +" already there")
+    else:
+        print(file_name + " not there, will be created")
+        create_empty_dataframe(file_path)
+
 file_name = "AceptanceReport.xlsx"
 file_path = os.path.join(MainDirectory, file_name)
-if os.path.exists(os.path.join(file_path)):
-    print("already there")
-else:
-    create_empty_dataframe(file_path)
-
+file_creater(file_path)
 
 file_name = "AllOperationData.xlsx"
 file_path = os.path.join(MainDirectory, file_name)
-if os.path.exists(os.path.join(file_path)):
-    print("already there")
-else:
-    create_empty_dataframe(file_path)
-
+file_creater(file_path)
 
 file_name = "PerformanceReport.xlsx"
 file_path = os.path.join(MainDirectory, file_name)
-if os.path.exists(os.path.join(file_path)):
-    print("already there")
-else:
-    create_empty_dataframe(file_path)
+file_creater(file_path)
 
 file_name = "TimelyUpdates.xlsx"
 file_path = os.path.join(MainDirectory, file_name)
-if os.path.exists(os.path.join(file_path)):
-    print("already there")
-else:
-    create_empty_dataframe(file_path)
-
+file_creater(file_path)
 
 
 print("The following are the current files within the MainDirectory:")
@@ -118,5 +107,4 @@ for x in os.listdir(MainDirectory):
         df.to_excel(x, index=False)
         end = timer()
 
-        print(end - start)  
-        print(end - start)        
+        print(end - start)     
