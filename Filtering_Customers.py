@@ -1,7 +1,6 @@
 import pandas
 import os
 import numpy
-import shutil
 from pathlib import Path
 
 WorkingDirectory = (r"C:\Users\杜甫\Desktop\BaseQueryStructure\\")
