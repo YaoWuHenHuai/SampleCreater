@@ -18,8 +18,12 @@ for index, row in email_list.iterrows():
     #will get that path from the EMAILs list file, d
     attachment_path = os.path.join(ATTACHMENT_DIR, f"{row['Customer']}.xlsx")
     print(attachment_path)
+    #this variable works just the same and fine if siwtch with attachment_path
+    Customer_in_file = row['Customer'] + ".xlsx"
+    Customer_in_file_path = os.path.join(ATTACHMENT_DIR, Customer_in_file)
+
     #Only if the customers file exists , 
-    if os.path.exists(attachment_path):
+    if os.path.exists(os.path.join(ATTACHMENT_DIR, f"{row['Customer']}.xlsx")):
         mail = outlook.CreateItem(0)
         mail.To = row["Emails"]
         mail.CC = row["CC"]
@@ -40,10 +44,10 @@ for index, row in email_list.iterrows():
                             <p>Anyting you need please get in touch,</p>
                             <p>Greetings,</p>
                             <p><strong>&nbsp;</strong></p>
-                            <p><strong>J.Santiago Velazquez G. |&nbsp;</strong></p>
+                            <p><strong> Name of the company offering product or service. |&nbsp;</strong></p>
                             <p>&nbsp;</p>
-                            <p>Office: 312-494-1725 ext: 4583</p>
-                            <p>Direct: 872-268-4583</p>
+                            <p>Office: 312-494-1666 ext: 4112</p>
+                            <p>Direct: 872-268-43213</p>
                             """
         mail.Attachments.Add(Source= attachment_path)
         mail.Display()
