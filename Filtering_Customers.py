@@ -2,6 +2,9 @@ import pandas
 import os
 import numpy
 from pathlib import Path
+from datetime import date
+from datetime import datetime
+from rich import print
 
 WorkingDirectory = (r"C:\Users\杜甫\Desktop\BaseQueryStructure\\")
 os.chdir(WorkingDirectory)
@@ -25,7 +28,7 @@ SourceFile = "AceptanceReport"
 os.chdir(SourceDirectory)
 
 
-#To get a list for unique values within customer Column 
+#To get a list for unique values within customer Column , although there is originally more customers, we will only grab the ones within the file 
 Unique_Values_List = []
 def get_unique_values_list_within_df(x):
     if x.endswith(".xlsx"):
@@ -40,11 +43,15 @@ def get_unique_values_list_within_df(x):
     print()
     print("The following are the unique values within Customer Column from the df was took from " + x)
     print(c)
-
+    
 #This example we get those unique values from the column from the AceptanceReport
 x = "AceptanceReport.xlsx"
 get_unique_values_list_within_df(x)
-print()
+Data_Directory = (r"C:\Users\杜甫\Desktop\Projects\ReportsAutomation\\")
+os.chdir(Data_Directory)
+useless_df = pandas.DataFrame({"Column":Unique_Values_List})
+useless_df.to_csv("lists.csv", index= False)
+
 
 
 #In order to express current directory file     
@@ -68,10 +75,12 @@ print()
 print("Working with " + Excel_File_Name)
 print(Excel_File_Name)
 File_To_Read = os.path.join(WorkingDirectory + Excel_File_Name)
+Data_Directory = (r"C:\Users\杜甫\Desktop\Projects\ReportsAutomation\\")
+os.chdir(Data_Directory)
 df = pandas.read_excel(File_To_Read, engine="openpyxl")
 print(df)
 
-
+os.chdir(os.path.join(WorkingDirectory + FiltersList))
 #Values we got into the Unique List, will be used here now 
 print(Unique_Values_List)
 
@@ -101,3 +110,9 @@ for j in Unique_Values_List:
         some_list.append(j)
         
 print(os.path.join(WorkingDirectory, FiltersList))
+
+
+
+#H///////////////////////////////////////////////////////
+#////////////////////////////////////////////////////////
+#///////////////////////////////////////////////////////
