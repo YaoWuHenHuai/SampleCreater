@@ -22,5 +22,8 @@ elif query.lower()=="samples_creater":
 	os.system("python Samples_Creater.py") 
 
 else: 
+	print("not command recognised")
+	print("process stopped")
 	sys.exit() 
+
 
